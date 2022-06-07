@@ -8,14 +8,17 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import React from "react";
 
 export default function App() {
   const [user, setUser] = React.useState("");
   const [profile, setProfile] = React.useState(null);
+  const [loadingSpinnerSearchProfile, setLoadingSpinnerSearchProfile] = React.useState(false);
 
   const handleRequestUserData = async () => {
+    setLoadingSpinnerSearchProfile(true)
     setProfile(null);
     if (!user) return;
     try {
@@ -23,14 +26,17 @@ export default function App() {
       const data = await response.json();
 
       if (!response.ok) {
+        setLoadingSpinnerSearchProfile(false)
         setUser(null);
         return;
       }
 
       setProfile(data);
       console.log(data);
+      setLoadingSpinnerSearchProfile(false)
     } catch (err) {
       console.log(err);
+      setLoadingSpinnerSearchProfile(false)
     }
 
     setUser(null);
@@ -39,6 +45,7 @@ export default function App() {
   return (
     <Pressable onPress={Keyboard.dismiss}>
       <View style={styles.container}>
+        
         {profile == null ? (
           <>
             <Title />
@@ -54,7 +61,16 @@ export default function App() {
                   handleRequestUserData();
                 }}
               >
-                <Text style={{ color: "white" }}> PESQUISAR </Text>
+                <View style={styles.loading}>
+                  <Text style={{ color: "white" }}> PESQUISAR </Text>
+                  <ActivityIndicator
+                  style={styles.loadingSpinner}
+                  size="small"
+                  color="#00ff00"
+                  animating={loadingSpinnerSearchProfile}
+                />
+                </View>
+                
               </TouchableOpacity>
             </View>
           </>
@@ -111,5 +127,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 35,
     backgroundColor: "black",
+  },
+  loading: {
+    flexDirection:"row",
+  },
+  loadingSpinner: {
+    zIndex:100,
   },
 });
