@@ -12,9 +12,9 @@ const styles = StyleSheet.create({
   },
   textAvatar: {
     color: "white",
-    marginLeft: 175,
-    fontSize: 25,
-
+    marginLeft: 160,
+    fontSize: 30,
+    fontWeight:"bold"
   },
   header: {
     flexDirection: "row",
@@ -26,7 +26,31 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     position:"absolute",
     justifyContent:"center",
+  },
+  contentInformations: {
+    marginLeft:'auto',
+    marginRight:'auto',
+    width: "90%",
+    height: "auto",
+    backgroundColor:"black",
+    borderRadius: 50,
+    padding: 10,
+    marginTop:20,
+    alignItems:'center',
+    marginBottom:30,
+  },
+  contentInformationsAlign: {
+    alignItems:'center',
+    alignContent:"center"
+  },
+  textContentInformations: {
+    color: "white",
+    fontWeight:"bold",
+    marginBottom: 15,
+    alignItems:'center',
+    alignContent:"center"
   }
+  
 });
 
 export default styles;

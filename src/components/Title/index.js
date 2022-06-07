@@ -1,5 +1,4 @@
 import { View, Text,Image } from 'react-native';
-import InputSearch from '../InputSearch';
 import styles from "./style"
 
 export default function Title() {

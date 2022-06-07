@@ -28,7 +28,7 @@ export default function App() {
       }
 
       setProfile(data);
-      console.log(data)
+      console.log(data);
     } catch (err) {
       console.log(err);
     }
@@ -60,7 +60,17 @@ export default function App() {
           </>
         ) : (
           <View style={styles.container}>
-            <ProfileInformations data={profile}/>
+            <ProfileInformations data={profile} />
+            <View style={styles.content}>
+              <TouchableOpacity
+                style={styles.buttonForm2}
+                onPress={() => {
+                  setProfile(null);
+                }}
+              >
+                <Text style={{ color: "white" }}> PESQUISAR NOVAMENTE </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         )}
       </View>
@@ -89,6 +99,15 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: "center",
     alignContent: "center",
+    alignItems: "center",
+    borderRadius: 35,
+    backgroundColor: "black",
+  },
+  buttonForm2: {
+    width: 350,
+    height: 40,
+    justifyContent: "center",
+    alignContent: "space-around",
     alignItems: "center",
     borderRadius: 35,
     backgroundColor: "black",
